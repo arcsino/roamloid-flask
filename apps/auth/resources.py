@@ -65,9 +65,8 @@ class ChangePasswordResource(Resource):
         # Change password
         old_password = data["old_password"]
         new_password = data["new_password"]
-        user = current_user
-        if user and user.check_password(old_password):
-            user.password = new_password
+        if current_user and current_user.check_password(old_password):
+            current_user.password = new_password
             db.session.commit()
             # return {"message": "パスワードが正常に変更されました。"}, 200  # OK
             return {"message": "Password changed successfully."}, 200  # OK
@@ -90,11 +89,10 @@ class UserDetailResource(Resource):
 
     @login_required
     def get(self):
-        user = current_user
-        if user:
+        if current_user:
             return {
-                "id": user.id,
-                "username": user.username,
+                "id": current_user.id,
+                "username": current_user.username,
             }, 200  # OK
         # return {"error_message": "ユーザーが見つかりません。"}, 404  # Not Found
         return {"error_message": "User not found."}, 404  # Not Found

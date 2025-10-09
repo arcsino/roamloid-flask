@@ -36,11 +36,22 @@ class User(db.Model, UserMixin):
         return User.query.get(str(id))
 
 
-class Room(db.Model):
-    """Room model."""
+class Device(db.Model):
+    """Device model."""
 
-    __tablename__ = "room"
+    __tablename__ = "device"
     id = db.Column(db.String(36), primary_key=True, default=generate_uuid)
+    name = db.Column(db.String(80), nullable=False, unique=True)
     owner = db.Column(db.String(36), db.ForeignKey("user.id"), nullable=False)
     in_3d = db.Column(db.Boolean, nullable=False, default=False)
-    device = db.Column(db.String(80))
+
+
+class ChatMessage(db.Model):
+    """ChatMessage model."""
+
+    __tablename__ = "chat_message"
+    id = db.Column(db.String(36), primary_key=True, default=generate_uuid)
+    user_id = db.Column(db.String(36), db.ForeignKey("user.id"), nullable=False)
+    device_id = db.Column(db.String(36), db.ForeignKey("device.id"), nullable=False)
+    text = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, server_default=db.func.now(), nullable=False)
