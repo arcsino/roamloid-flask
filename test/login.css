@@ -1,0 +1,66 @@
+body {
+    background: #f7f7fa;
+    font-family: 'Segoe UI', 'Meiryo', sans-serif;
+}
+.login-container {
+    max-width: 340px;
+    margin: 60px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 32px 24px 24px 24px;
+}
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5em;
+}
+.form-group {
+    margin-bottom: 1.2em;
+}
+label {
+    display: block;
+    margin-bottom: 0.3em;
+    color: #555;
+}
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+button[type="submit"] {
+    width: 100%;
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.7em 0;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 0.5em;
+    transition: background 0.2s;
+}
+button[type="submit"]:hover {
+    background: #2563eb;
+}
+.login-message {
+    margin-top: 1.2em;
+    text-align: center;
+    font-size: 1em;
+    padding: 0.5em 0.7em;
+    border-radius: 4px;
+}
+.login-message.success {
+    color: #1a7f37;
+    background: #e6f9ed;
+    border: 1px solid #b6e7c9;
+}
+.login-message.error {
+    color: #b91c1c;
+    background: #fbeaea;
+    border: 1px solid #f5c2c7;
+}

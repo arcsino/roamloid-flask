@@ -1,0 +1,47 @@
+### Signup
+POST https://roamloid-flask.onrender.com/api/auth/signup
+Content-Type: application/json
+Origin: http://localhost:5173
+
+{
+    "username": "testuser",
+    "password": "testpassword123"
+}
+
+### Login
+POST https://roamloid-flask.onrender.com/api/auth/login
+Content-Type: application/json
+Origin: http://localhost:5173
+
+{
+    "username": "testuser",
+    "password": "wrongpassword"
+}
+
+### Password Change
+POST https://roamloid-flask.onrender.com/api/auth/change-password
+Content-Type: application/json
+Origin: http://localhost:5173
+
+{
+    "old_password": "testpassword123",
+    "new_password": "testpassword1234"
+}
+
+
+### User Detail
+GET https://roamloid-flask.onrender.com/api/auth/detail
+Content-Type: application/json
+Origin: http://localhost:5173
+
+
+### Logout
+POST https://roamloid-flask.onrender.com/api/auth/logout
+Content-Type: application/json
+Origin: http://localhost:5173
+
+
+### Delete User
+DELETE https://roamloid-flask.onrender.com/api/auth/delete
+Content-Type: application/json
+Origin: http://localhost:5173

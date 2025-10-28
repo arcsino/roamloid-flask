@@ -1,0 +1,9 @@
+### Health Check Test (Allowed origin)
+GET http://localhost:5000/api/health
+Content-Type: application/json
+Origin: http://localhost:5173
+
+### Deploy
+GET https://roamloid-flask.onrender.com/api/health/
+Content-Type: application/json
+Origin: http://localhost:5173
