@@ -6,6 +6,7 @@ from .settings import CORS_ORIGINS
 from .models import db, login_manager
 from .health.urls import health_api
 from .auth.urls import auth_api
+from .room.urls import room_api
 
 
 def create_app():
@@ -28,6 +29,7 @@ def create_app():
     # API setup
     health_api.init_app(app)
     auth_api.init_app(app)
+    room_api.init_app(app)
 
     # Database setup
     db.init_app(app)
