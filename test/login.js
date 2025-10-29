@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (res.ok) {
         messageDiv.textContent = "ログイン成功: " + (data.message || "");
         messageDiv.className = "login-message success";
-        location.href = "socketio_test.html"; // 必要に応じて遷移
+        location.href = "device.html";
       } else {
         messageDiv.textContent =
           data.error_message || "ログインに失敗しました。";

@@ -3,15 +3,15 @@ body {
     font-family: 'Segoe UI', 'Meiryo', sans-serif;
 }
 .container {
-    max-width: 480px;
+    max-width: 520px;
     margin: 40px auto;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     padding: 32px 24px;
 }
-h1 {
-    font-size: 1.5em;
+h1, h2 {
+    font-size: 1.3em;
     margin-bottom: 1em;
     color: #333;
     text-align: center;
@@ -24,7 +24,7 @@ label {
     margin-bottom: 0.3em;
     color: #555;
 }
-input[type="text"] {
+input[type="text"], select {
     width: 100%;
     padding: 0.5em;
     border: 1px solid #ccc;
@@ -41,6 +41,7 @@ button {
     font-size: 1em;
     cursor: pointer;
     margin-bottom: 1em;
+    margin-right: 0.5em;
     transition: background 0.2s;
 }
 button:hover {
@@ -55,4 +56,12 @@ button:hover {
     overflow-y: auto;
     font-size: 0.95em;
     color: #222;
+}
+.message {
+    margin-top: 0.5em;
+    font-size: 0.98em;
+    color: #2563eb;
+}
+.message.error {
+    color: #b91c1c;
 }

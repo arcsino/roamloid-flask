@@ -15,7 +15,7 @@ Origin: http://localhost:5173
 
 {
     "username": "testuser",
-    "password": "wrongpassword"
+    "password": "testpassword123"
 }
 
 ### Password Change
