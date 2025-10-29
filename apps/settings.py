@@ -10,7 +10,9 @@ BASEDIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASEDIR / ".env")
 
 # Secret key for session management and other security-related needs
-SECRET_KEY = os.urandom(24)
+# SECRET_KEY = os.urandom(24)
+# 秘密鍵を固定の値(.envのSECRET_KEY)にすることで、サーバー再起動後もセッションが維持されるようにする⇖はサーバーー再起動のたびに変わってしまうため
+SECRET_KEY = os.getenv("SECRET_KEY", "default_fallback_key_for_development")
 
 # Debug mode
 DEBUG = os.getenv("DEBUG", 0)

@@ -14,7 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     try {
       const res = await fetch(
-        "https://roamloid-flask.onrender.com/api/auth/login",
+        //本番環境
+        // "https://roamloid-flask.onrender.com/api/auth/login",
+        //ローカルサーバーに接続（開発環境）
+        "http://localhost:5000/api/auth/login",
         {
           method: "POST",
           headers: {

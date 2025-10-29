@@ -14,10 +14,11 @@ def create_app():
     app = Flask(__name__)
 
     # Enable CORS
-    """CORS(
+    CORS(
         app, resources={r"/api/*": {"origins": CORS_ORIGINS}}, supports_credentials=True
-    )"""  # 本番環境用
-    CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+    )  
+    # 本番環境用
+    # CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
     # Load configuration
     app.config.from_pyfile("settings.py")

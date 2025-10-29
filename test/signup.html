@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>サインアップ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>アカウント作成</h1>
+        <form id="signupForm">
+            <div class="form-group">
+                <label>ユーザー名:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label>パスワード:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">サインアップ</button>
+        </form>
+        <div id="message"></div>
+        <p><a href="login.html">ログインページへ</a></p>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+                const messageDiv = document.getElementById('message');
+
+                if (response.ok) {
+                    messageDiv.textContent = 'アカウント作成成功！ログインページへ移動します...';
+                    messageDiv.style.color = 'green';
+                    setTimeout(() => window.location.href = 'login.html', 2000);
+                } else {
+                    messageDiv.textContent = `エラー: ${data.msg}`;
+                    messageDiv.style.color = 'red';
+                }
+            } catch (error) {
+                document.getElementById('message').textContent = 'サーバーエラー';
+            }
+        });
+    </script>
+</body>
+</html>
