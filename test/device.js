@@ -9,41 +9,50 @@ function showMessage(msg, isError = false) {
 }
 
 async function fetchUserId() {
-  const res = await fetch(
-    "https://roamloid-flask.onrender.com/api/auth/detail",
-    {
-      credentials: "include",
-    }
-  );
+  const res = await fetch("http://127.0.0.1:5000/api/auth/detail", {
+    method: "GET",
+    credentials: "include",
+  });
   if (!res.ok) throw new Error("ユーザー情報取得失敗");
   const data = await res.json();
   return data.id;
 }
 
 async function fetchDevices() {
-  const res = await fetch(
-    "https://roamloid-flask.onrender.com/api/room/devices",
-    {
-      credentials: "include",
-    }
-  );
+  const res = await fetch("http://127.0.0.1:5000/api/room/devices", {
+    method: "GET",
+    credentials: "include",
+  });
   if (!res.ok) throw new Error("デバイス一覧取得失敗");
   const data = await res.json();
+  // dataが配列ならそのまま返す、オブジェクトならdevicesプロパティを返す
+  if (Array.isArray(data)) return data;
   return data.devices || [];
 }
 
 async function createDevice(name) {
-  const res = await fetch(
-    "https://roamloid-flask.onrender.com/api/room/devices",
-    {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name }),
-    }
-  );
+  const res = await fetch("http://127.0.0.1:5000/api/room/devices", {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: name }),
+  });
   return await res.json();
 }
+
+socket = io();
+socket.on("joined", (data) => {
+  appendLog(`joined: ${JSON.stringify(data)}`);
+});
+socket.on("receive_data", (data) => {
+  appendLog(`受信: ${data.text}`);
+});
+socket.on("moved_3d", (data) => {
+  appendLog(`3D移動: ${JSON.stringify(data)}`);
+});
+socket.on("error", (data) => {
+  appendLog(`error: ${JSON.stringify(data)}`);
+});
 
 document.addEventListener("DOMContentLoaded", async () => {
   const deviceSelect = document.getElementById("device_select");
@@ -106,7 +115,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       currentDevice = deviceName;
       deviceSelectSection.style.display = "none";
       chatSection.style.display = "";
-      startSocket();
+      socket.emit("join_room", { device_name: currentDevice });
     } catch (e) {
       showMessage("ユーザー情報取得失敗: " + e.message, true);
     }
@@ -127,26 +136,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     div.textContent = message;
     log.appendChild(div);
     log.scrollTop = log.scrollHeight;
-  }
-
-  function startSocket() {
-    socket = io();
-    socket.on("connect", () => {
-      socket.emit("join_room", { device_name: currentDevice });
-      appendLog("接続しました。デバイス: " + currentDevice);
-    });
-    socket.on("joined", (data) => {
-      appendLog(`joined: ${JSON.stringify(data)}`);
-    });
-    socket.on("receive_data", (data) => {
-      appendLog(`受信: ${data.text}`);
-    });
-    socket.on("moved_3d", (data) => {
-      appendLog(`3D移動: ${JSON.stringify(data)}`);
-    });
-    socket.on("error", (data) => {
-      appendLog(`error: ${JSON.stringify(data)}`);
-    });
   }
 
   sendBtn.onclick = () => {
