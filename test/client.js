@@ -1,7 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const socket = io();
+    // const socket = io(); これだと、ログイン時にサーバーからもらったセッションクッキーをWebSocketの接続時に送ってくれない(らしい)
+
+    const socket = io('http://localhost:5000', {// ローカルサーバーに接続（開発環境）
+    // const socket = io('https://roamloid-flask.onrender.com', { //本番環境
+        withCredentials: true// これでCookieを送受信
+    });
+
     const log = document.getElementById('log');
-    const userIdInput = document.getElementById('user_id');
     const deviceNameInput = document.getElementById('device_name');
     const joinBtn = document.getElementById('joinBtn');
     const msgInput = document.getElementById('msg');
