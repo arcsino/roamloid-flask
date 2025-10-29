@@ -1,10 +1,10 @@
 ### GET デバイス一覧取得
-GET https://roamloid-flask.onrender.com/api/room/devices
+GET http://127.0.0.1:5000/api/room/devices
 Content-Type: application/json
 Origin: http://localhost:5173
 
 ### POST デバイス作成
-POST https://roamloid-flask.onrender.com/api/room/devices
+POST http://127.0.0.1:5000/api/room/devices
 Content-Type: application/json
 Origin: http://localhost:5173
 
@@ -13,12 +13,12 @@ Origin: http://localhost:5173
 }
 
 ### GET デバイス詳細取得
-GET https://roamloid-flask.onrender.com/api/room/devices/{device_id}
+GET http://127.0.0.1:5000/api/room/devices/3026ef59-9479-4aa4-8f1b-ff2e61d271c4
 Content-Type: application/json
 Origin: http://localhost:5173
 
 ### PUT デバイス更新
-PUT https://roamloid-flask.onrender.com/api/room/devices/{device_id}
+PUT http://127.0.0.1:5000/api/room/devices/3026ef59-9479-4aa4-8f1b-ff2e61d271c4
 Content-Type: application/json
 Origin: http://localhost:5173
 
@@ -27,6 +27,6 @@ Origin: http://localhost:5173
 }
 
 ### DELETE デバイス削除
-DELETE https://roamloid-flask.onrender.com/api/room/devices/{device_id}
+DELETE http://127.0.0.1:5000/api/room/devices/3026ef59-9479-4aa4-8f1b-ff2e61d271c4
 Content-Type: application/json
 Origin: http://localhost:5173
