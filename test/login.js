@@ -13,20 +13,26 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Origin: "http://localhost:5173",
-        },
-        credentials: "include",
-        body: JSON.stringify({ username, password }),
-      });
+      const res = await fetch(
+        //本番環境
+        // "https://roamloid-flask.onrender.com/api/auth/login",
+        //ローカルサーバーに接続（開発環境）
+        "http://localhost:5000/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Origin: "http://localhost:5173",
+          },
+          credentials: "include",
+          body: JSON.stringify({ username, password }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         messageDiv.textContent = "ログイン成功: " + (data.message || "");
         messageDiv.className = "login-message success";
-        location.href = "device.html";
+        location.href = "socketio_test.html"; // 必要に応じて遷移
       } else {
         messageDiv.textContent =
           data.error_message || "ログインに失敗しました。";

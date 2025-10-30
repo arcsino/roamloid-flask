@@ -12,12 +12,12 @@ Origin: http://localhost:5173
   "name": "device4"
 }
 
-### GET デバイス詳細取得
+### GET デバイス詳細取得 http://127.0.0.1:5000/api/room/devices/{device_id}
 GET http://127.0.0.1:5000/api/room/devices/38845969-068e-4898-a6a7-48fef4f0897d
 Content-Type: application/json
 Origin: http://localhost:5173
 
-### PUT デバイス更新
+### PUT デバイス更新 http://127.0.0.1:5000/api/room/devices/{device_id}
 PUT http://127.0.0.1:5000/api/room/devices/38845969-068e-4898-a6a7-48fef4f0897d
 Content-Type: application/json
 Origin: http://localhost:5173
@@ -26,7 +26,7 @@ Origin: http://localhost:5173
     "name": "device3"
 }
 
-### DELETE デバイス削除
+### DELETE デバイス削除 http://127.0.0.1:5000/api/room/devices/{device_id}
 DELETE http://127.0.0.1:5000/api/room/devices/38845969-068e-4898-a6a7-48fef4f0897d
 Content-Type: application/json
 Origin: http://localhost:5173

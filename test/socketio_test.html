@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Socket.IO テストクライアント</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Socket.IO テストクライアント</h1>
+      <div class="form-group">
+        <label>デバイス新規作成:</label>
+        <input
+          type="text"
+          id="new_device_name"
+          placeholder="新しいデバイス名"
+        />
+        <button id="createDeviceBtn">作成</button>
+      </div>
+      <div class="form-group">
+        <label>デバイスリスト:</label>
+        <ul id="deviceList" style="margin: 0 0 1em 0; padding-left: 1em"></ul>
+      </div>
+      <div class="form-group">
+        <label>デバイス選択:</label>
+        <select id="deviceSelect"></select>
+        <button id="joinBtn">ルーム参加</button>
+      </div>
+      <div class="form-group">
+        <label>デバイス削除:</label>
+        <select id="deviceDeleteSelect"></select>
+        <button id="deleteDeviceBtn">削除</button>
+      </div>
+      <hr />
+      <div class="form-group">
+        <label>メッセージ:</label>
+        <input type="text" id="msg" placeholder="メッセージ" />
+      </div>
+      <div class="form-group">
+        <label>3D移動先デバイス:</label>
+        <select id="moveDeviceSelect"></select>
+      </div>
+      <button id="sendBtn">送信</button>
+      <hr />
+      <div id="log" class="log"></div>
+    </div>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="socketio_test.js"></script>
+  </body>
+</html>

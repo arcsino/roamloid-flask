@@ -1,26 +1,38 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>ログイン | roamloid-flask</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
     <div class="login-container">
-        <h2>ログイン</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">ユーザー名</label>
-                <input type="text" id="username" name="username" required autocomplete="username">
-            </div>
-            <div class="form-group">
-                <label for="password">パスワード</label>
-                <input type="password" id="password" name="password" required autocomplete="current-password">
-            </div>
-            <button type="submit">ログイン</button>
-        </form>
-        <div id="login-message" class="login-message"></div>
+      <h2>ログイン</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">ユーザー名</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            autocomplete="username"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">パスワード</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autocomplete="current-password"
+          />
+        </div>
+        <button type="submit">ログイン</button>
+      </form>
+      <div id="login-message" class="login-message"></div>
     </div>
     <script src="login.js"></script>
-</body>
+  </body>
 </html>
