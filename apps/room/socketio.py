@@ -1,5 +1,5 @@
 from flask_socketio import SocketIO, disconnect, join_room, emit
-from flask_login import login_required, current_user
+from flask_login import current_user
 from apps.models import db, Device, ChatMessage
 import functools
 
@@ -21,7 +21,7 @@ def authenticated_only(f):
 @socketio.on("join_room")
 @authenticated_only
 def handle_join_room(data):
-    user_id = data.get("user_id")
+    user_id = current_user.id
     device_name = data.get("device_name")
 
     # Validate input
@@ -41,7 +41,7 @@ def handle_join_room(data):
 @socketio.on("send_data")
 @authenticated_only
 def handle_send_data(data):
-    user_id = data.get("user_id")
+    user_id = current_user.id
     device_name = data.get("device_name")
     msg = data.get("msg")
     move = data.get("move")  # example: {'to_device_name': ...
