@@ -34,7 +34,13 @@ def handle_join_room(data):
     # ------------------------------------------------------
 
     join_room(user_id)
-    emit("joined", {"device_name": device_name})
+
+    # "joined" イベントでクライアントに現在の状態を送信
+    emit("joined", {
+        "device_name": device.name,
+        "is_ai_here": device.in_3d,# device.in_3d は、DBから取ってきた最新の状態 (True or False) 
+        "ai_location": existing_3d_device.name if existing_3d_device else "None"# AIがどこにいるか
+    })
 
 
 @login_required
