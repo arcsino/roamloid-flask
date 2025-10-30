@@ -39,7 +39,7 @@ class DeviceListCreateResource(Resource):
         }, 201
 
 
-class DeviceResource(Resource):
+class DeviceRetrieveUpdateDestroyResource(Resource):
     """Device detail, update, and delete API"""
 
     validator = DeviceValidator()

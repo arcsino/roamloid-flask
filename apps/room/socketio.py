@@ -1,15 +1,27 @@
-from flask_socketio import SocketIO, join_room, emit
+from flask_socketio import SocketIO, disconnect, join_room, emit
 from flask_login import login_required, current_user
 from apps.models import db, Device, ChatMessage
+import functools
 
 
 socketio = SocketIO()
 
 
-@login_required
+def authenticated_only(f):
+    @functools.wraps(f)
+    def wrapped(*args, **kwargs):
+        if not current_user.is_authenticated:
+            disconnect()
+        else:
+            return f(*args, **kwargs)
+
+    return wrapped
+
+
 @socketio.on("join_room")
+@authenticated_only
 def handle_join_room(data):
-    user_id = current_user.id
+    user_id = data.get("user_id")
     device_name = data.get("device_name")
 
     # Validate input
@@ -26,10 +38,10 @@ def handle_join_room(data):
     emit("joined", {"device_name": device_name})
 
 
-@login_required
 @socketio.on("send_data")
+@authenticated_only
 def handle_send_data(data):
-    user_id = current_user.id
+    user_id = data.get("user_id")
     device_name = data.get("device_name")
     msg = data.get("msg")
     move = data.get("move")  # example: {'to_device_name': ...
