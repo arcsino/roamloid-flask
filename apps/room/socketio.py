@@ -5,7 +5,7 @@ from .gemini import convert_msg_into_command
 import functools, json
 
 
-socketio = SocketIO()
+socketio = SocketIO(async_mode="eventlet")
 
 
 def authenticated_only(f):
