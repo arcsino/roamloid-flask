@@ -56,7 +56,8 @@ def handle_join_room(data):
 def handle_send_data(data):
     user_id = current_user.id
     device_name = data.get("device_name")
-    msg = str({"msg": data.get("msg"), "from": device_name})
+    msg = data.get("msg")
+    msg_and_from = str({"msg": msg, "from": device_name})
 
     # saving chat message to database
     if msg is None or msg == "":
@@ -73,10 +74,14 @@ def handle_send_data(data):
         past_messages = [
             {"msg": pm.text, "response": pm.command} for pm in past_messages
         ]
-        converted_msg, status_code = convert_msg_into_command(msg, past_messages)
+        converted_msg, status_code = convert_msg_into_command(
+            msg_and_from, past_messages
+        )
         if status_code != 200:
             emit("error", {"msg": converted_msg})
             return
+        else:
+            print("Converted message:", converted_msg)
         chat_message = ChatMessage(
             user_id=user_id,
             device_id=Device.query.filter_by(name=device_name, owner=user_id)
