@@ -12,7 +12,7 @@ from .room.urls import room_api
 def create_app():
 
     # Initialize Flask app
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder="../templates")
 
     # Enable CORS
     CORS(

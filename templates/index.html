@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ヘルスチェック</title>
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			min-height: 100vh;
+			background: #f7fafb;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-family: 'Segoe UI', 'Meiryo', 'Roboto', 'Arial', sans-serif;
+		}
+		.health-check-ok {
+			color: #39c5bb;
+			font-size: 2.4rem;
+			font-weight: 700;
+			background: #fff;
+			border-radius: 16px;
+			box-shadow: 0 4px 24px #39c5bb22;
+			border: 2px solid #39c5bb;
+			padding: 2.2em 2.5em;
+			text-align: center;
+			letter-spacing: 0.04em;
+			transition: box-shadow 0.2s;
+		}
+		.health-check-ok:hover {
+			box-shadow: 0 8px 32px #39c5bb55;
+		}
+	</style>
+</head>
+<body>
+	<div class="health-check-ok">ヘルスチェックOK</div>
+</body>
+</html>
