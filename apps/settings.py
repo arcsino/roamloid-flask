@@ -10,7 +10,7 @@ BASEDIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASEDIR / ".env")
 
 # Secret key for session management and other security-related needs
-SECRET_KEY = os.urandom(24)
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # Debug mode
 DEBUG = os.getenv("DEBUG", 0)
