@@ -35,8 +35,20 @@ def handle_join_room(data):
         device = Device(name=device_name, owner=user_id)
         db.session.add(device)
         db.session.commit()
+    existing_device = Device.query.filter_by(in_3d=True, owner=user_id).first()
+    if not existing_device:
+        device.in_3d = True
+        db.session.commit()
+        existing_device = Device.query.filter_by(in_3d=True, owner=user_id).first()
     join_room(user_id)
-    emit("joined", {"device_name": device_name})
+    emit(
+        "joined",
+        {
+            "device_name": device_name,
+            "is_ai_here": device.in_3d,
+            "ai_location": existing_device.name,
+        },
+    )
 
 
 @socketio.on("send_data")
@@ -44,7 +56,7 @@ def handle_join_room(data):
 def handle_send_data(data):
     user_id = current_user.id
     device_name = data.get("device_name")
-    msg = data.get("msg")
+    msg = str({"msg": data.get("msg"), "from": device_name})
 
     # saving chat message to database
     if msg is None or msg == "":
@@ -85,9 +97,8 @@ def handle_send_data(data):
             emit(
                 "receive_data",
                 {
-                    "action": "conversation",
                     "msg": msg,
-                    "response": response,
+                    "text": response,
                     "device_name": device_name,
                 },
                 room=user_id,
@@ -109,12 +120,11 @@ def handle_send_data(data):
                 to_device.in_3d = True
                 db.session.commit()
                 emit(
-                    "received_data",
+                    "moved_3d",
                     {
-                        "action": "move",
                         "to_device_name": to_device_name,
                         "msg": msg,
-                        "response": response,
+                        "text": response,
                         "device_name": device_name,
                     },
                     room=user_id,
@@ -132,15 +142,10 @@ def handle_send_data(data):
                     "action": "animation",
                     "animation_type": animation_type,
                     "msg": msg,
-                    "response": response,
+                    "text": response,
                     "device_name": device_name,
                 },
                 room=user_id,
             )
         except Exception as e:
             emit("error", {"msg": str(e)})
-    emit(
-        "receive_data",
-        {"action": "animation", "device_name": device_name, "response": response},
-        room=user_id,
-    )

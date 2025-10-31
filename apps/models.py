@@ -41,7 +41,7 @@ class Device(db.Model):
 
     __tablename__ = "device"
     id = db.Column(db.String(36), primary_key=True, default=generate_uuid)
-    name = db.Column(db.String(80), nullable=False, unique=True)
+    name = db.Column(db.String(80), nullable=False)
     owner = db.Column(db.String(36), db.ForeignKey("user.id"), nullable=False)
     in_3d = db.Column(db.Boolean, nullable=False, default=False)
 
