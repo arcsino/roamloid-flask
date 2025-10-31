@@ -1,3 +1,8 @@
+import eventlet
+
+eventlet.monkey_patch()
+
+
 from flask import render_template
 from apps import create_app, settings
 from apps.room.socketio import socketio
