@@ -20,6 +20,9 @@ def create_app():
     )  # 本番環境用
     # CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
 
+    # Enable secure cookies
+    app.config["SESSION_COOKIE_SECURE"] = True
+
     # Load configuration
     app.config.from_pyfile("settings.py")
 
