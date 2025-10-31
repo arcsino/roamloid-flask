@@ -23,5 +23,5 @@ SQLALCHEMY_DATABASE_URI = f"sqlite:///{BASEDIR / 'db.sqlite3'}"
 # CORS configuration
 CORS_ORIGINS = os.getenv("FLASK_CORS_ORIGINS", "").split(",")
 
-# Japanese characters support
-JSON_AS_ASCII = False
+# API keys
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")

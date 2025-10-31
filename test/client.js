@@ -186,9 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
   socket.on("receive_data", (data) => {
     appendLog(`receive_data: ${JSON.stringify(data)}`);
   });
-  socket.on("moved_3d", (data) => {
-    appendLog(`moved_3d: ${JSON.stringify(data)}`);
-  });
   socket.on("error", (data) => {
     appendLog(`error: ${JSON.stringify(data)}`);
   });

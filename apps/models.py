@@ -54,4 +54,5 @@ class ChatMessage(db.Model):
     user_id = db.Column(db.String(36), db.ForeignKey("user.id"), nullable=False)
     device_id = db.Column(db.String(36), db.ForeignKey("device.id"), nullable=False)
     text = db.Column(db.Text, nullable=False)
+    command = db.Column(db.Text, nullable=True)
     timestamp = db.Column(db.DateTime, server_default=db.func.now(), nullable=False)

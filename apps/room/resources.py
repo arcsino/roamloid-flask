@@ -25,10 +25,6 @@ class DeviceListCreateResource(Resource):
             return {"error_message": message}, 400
         # Create new device
         name = data.get("name")
-        if not name:
-            return {"error_message": "Device name is required."}, 400
-        if Device.query.filter_by(name=name, owner=current_user.id).first():
-            return {"error_message": "Device name already exists."}, 400
         new_device = Device(name=name, owner=current_user.id)
         db.session.add(new_device)
         db.session.commit()
@@ -55,7 +51,7 @@ class DeviceRetrieveUpdateDestroyResource(Resource):
     def put(self, device_id):
         data = request.get_json()
         # Validation
-        is_valid, message = self.validator.validate(data, current_user.id, device_id)
+        is_valid, message = self.validator.validate(data, current_user.id)
         if not is_valid:
             return {"error_message": message}, 400
         # Update device

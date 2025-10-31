@@ -40,7 +40,8 @@
 5. データベース初期化（初回のみ）
 
    ```powershell
-   flask db init
+   flask db init  # 初回のみ
+   flask db stamp head  # dbファイルを削除した後のみ
    flask db migrate
    flask db upgrade
    ```
