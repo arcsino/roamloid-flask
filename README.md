@@ -35,6 +35,7 @@
    FLASK_APP=run.py
    FLASK_DEBUG=1
    FLASK_CORS_ORIGINS=http://localhost:5173
+   GEMINI_API_KEY = APIキー
    ```
 
 5. データベース初期化（初回のみ）

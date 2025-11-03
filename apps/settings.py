@@ -25,3 +25,5 @@ CORS_ORIGINS = os.getenv("FLASK_CORS_ORIGINS", "").split(",")
 
 # API keys
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
