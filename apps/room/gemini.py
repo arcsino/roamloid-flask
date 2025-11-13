@@ -26,8 +26,7 @@ def convert_msg_into_command(msg: str, past_messages: list) -> tuple[str, int]:
                     2.移動の場合: {"action": "move", "to_device_name": "device1", "response": "わかりました、device1に移動しますね。"}
                     3.アニメーションの場合: {"action": "animation", "animation_type": "jump", "response": "はい、ジャンプしますね。"}
                     あなたは初音ミクです。responseは日本語で、性格に合うように答えてください。
-                    返答は必ずjson形式で出力してください。pythonのjsonで変換するので```jsonなどを入れないでください。
-                    もう一度いいます。返答は必ずjson形式で出力してください。pythonのjsonで変換するので```jsonなどを入れないでください。
+                    返答は必ずjson形式で出力してください。
                     レスポンスは必ず1つのアクションのみを含むようにしてください。
                     会話と移動とアニメーションの区別がつかない場合は、会話(action: conversation)を選んでください。"""
             + f"""ユーザーメッセージ: {msg}
