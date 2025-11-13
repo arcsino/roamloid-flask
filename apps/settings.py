@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 
 # Base directory of the project
 BASEDIR = Path(__file__).resolve().parent.parent
@@ -24,4 +24,4 @@ SQLALCHEMY_DATABASE_URI = f"sqlite:///{BASEDIR / 'db.sqlite3'}"
 CORS_ORIGINS = os.getenv("FLASK_CORS_ORIGINS", "").split(",")
 
 # API keys
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")

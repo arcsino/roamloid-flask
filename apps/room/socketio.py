@@ -1,9 +1,12 @@
-from flask_socketio import SocketIO, disconnect, join_room, emit
-from flask_login import current_user
-from apps.models import db, Device, ChatMessage
-from .gemini import convert_msg_into_command
-import functools, json
+import functools
+import json
 
+from flask_login import current_user
+from flask_socketio import SocketIO, disconnect, emit, join_room
+
+from apps.models import ChatMessage, Device, db
+
+from .gemini import convert_msg_into_command
 
 socketio = SocketIO(async_mode="eventlet")
 
@@ -76,6 +79,9 @@ def handle_send_data(data):
         ]
         converted_msg, status_code = convert_msg_into_command(
             msg_and_from, past_messages
+        )
+        converted_msg = converted_msg.replace(old="```", new="").replace(
+            old="```json", new=""
         )
         if status_code != 200:
             emit("error", {"msg": converted_msg})
