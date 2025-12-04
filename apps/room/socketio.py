@@ -80,9 +80,6 @@ def handle_send_data(data):
         converted_msg, status_code = convert_msg_into_command(
             msg_and_from, past_messages
         )
-        converted_msg = converted_msg.replace(old="```", new="").replace(
-            old="```json", new=""
-        )
         if status_code != 200:
             emit("error", {"msg": converted_msg})
             return
